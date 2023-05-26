@@ -8,8 +8,8 @@ export default function Calculator() {
     const [operation, setOperation] = useState('');
     const [result, setResult] = useState('');
     const [history, setHistory] = useState([]);
-    const [isValue,setIsValue] = useState(false);
-    
+    const [isValue, setIsValue] = useState(false);
+
 
     const [historyHideShow, setHistoryHideShow] = useState(false);
     const handleClick = (e) => {
@@ -19,15 +19,15 @@ export default function Calculator() {
             ((e.target.value === '00') && current === '') ||
             (ops.includes(e.target.value) && result === '') ||
             ((e.target.value === '.') && result.includes('.')) ||
-            (current==='error')||
+            (current === 'error') ||
             //(current !=='' && previous==='' && operation==='') 
             (isValue)
         ) {
-            return; 
+            return;
         }
         setCurrent(current + e.target.value);
         setResult(result + e.target.value);
-       
+
 
     }
 
@@ -55,7 +55,7 @@ export default function Calculator() {
             case '-': ans = A - B; break;
             case '*': ans = A * B; break;
             case '/': ans = A / B; break;
-            case '%': ans = ((A*B)/100); break;
+            case '%': ans = ((A * B) / 100); break;
             default: return;
         }
         return ans;
@@ -70,7 +70,7 @@ export default function Calculator() {
             setCurrent(value);
             setIsValue(true);
             setPrevious(''); setOperation('');
-           //setResult(previous + operation + current)
+            //setResult(previous + operation + current)
             setHistory((preval) => { return [...preval, result, value]; });
         }
         catch (e) {
@@ -106,42 +106,45 @@ export default function Calculator() {
     return (
         <>
             <h1 className='m-4'>Calculator</h1>
-            <center>
-                <div className='calculator p-2'>
-                    {previous}{operation}
-                    <br />
-                    <input type='text' name='input' required value={current} onChange={() => { }}></input> <button type='button' className='bg-dark text-white' onClick={showHistory}><i className="fa fa-history" aria-hidden="true"></i></button>
-                    <br />
-                    <br />
+            <div className="d-flex justify-content-center">
+                <div className='card text-center text-white mt-2 p-1' style={{ border: '3px solid #61dafb', width: '30rem', backgroundColor: '#282c34' }}>
+                    <div className='mb-2 p-2'>
+                        {previous}{operation}
+                        <br />
+                        <input type='text' name='input' required value={current} onChange={() => { }}></input> <button type='button' className='bg-dark text-white' onClick={showHistory}><i className="fa fa-history" aria-hidden="true"></i></button>
+                        <br />
+                    </div>
+                    <div className='mb-3'>
+                        <button type='button' className='btn btn-dark' name="btn7" onClick={handleClick} value='7' >7</button>
+                        <button type='button' className='btn btn-dark' name="btn8" onClick={handleClick} value='8'>8</button>
+                        <button type='button' className='btn btn-dark' name="btn9" onClick={handleClick} value='9'>9</button>
+                        <button type='button' className='btn btn-dark' name="ops" onClick={handleOps} value='/'>/</button>
+                        <button type='button' className='btn btn-danger' name="btn" onClick={handleDel} value='Del'>Del</button>
+                        <br></br>
+                        <button type='button' className='btn btn-dark' name="btn4" onClick={handleClick} value='4'>4</button>
+                        <button type='button' className='btn btn-dark' name="btn5" onClick={handleClick} value='5'>5</button>
+                        <button type='button' className='btn btn-dark' name="btn6" onClick={handleClick} value='6'>6</button>
+                        <button type='button' className='btn btn-dark' name="ops" onClick={handleOps} value='*'>*</button>
+                        <button type='button' className='btn btn-dark' name="ops" onClick={handleOps} value='%'>%</button>
+                        <br />
+                        <button type='button' className='btn btn-dark' name="btn1" onClick={handleClick} value='1'>1</button>
+                        <button type='button' className='btn btn-dark' name="btn2" onClick={handleClick} value='2'>2</button>
+                        <button type='button' className='btn btn-dark' name="btn3" onClick={handleClick} value='3'>3</button>
+                        <button type='button' className='btn btn-dark' name="ops" onClick={handleOps} value='+'>+</button>
+                        <button type='button' className='btn btn-dark' name="ops" onClick={handleOps} value='-'>-</button>
 
-                    <button type='button' className='btn btn-dark' name="btn7" onClick={handleClick} value='7' >7</button>
-                    <button type='button' className='btn btn-dark' name="btn8" onClick={handleClick} value='8'>8</button>
-                    <button type='button' className='btn btn-dark' name="btn9" onClick={handleClick} value='9'>9</button>
-                    <button type='button' className='btn btn-dark' name="ops" onClick={handleOps} value='/'>/</button>
-                    <button type='button' className='btn btn-danger' name="btn" onClick={handleDel} value='Del'>Del</button>
-                    <br></br>
-                    <button type='button' className='btn btn-dark' name="btn4" onClick={handleClick} value='4'>4</button>
-                    <button type='button' className='btn btn-dark' name="btn5" onClick={handleClick} value='5'>5</button>
-                    <button type='button' className='btn btn-dark' name="btn6" onClick={handleClick} value='6'>6</button>
-                    <button type='button' className='btn btn-dark' name="ops" onClick={handleOps} value='*'>*</button>
-                    <button type='button' className='btn btn-dark' name="ops" onClick={handleOps} value='%'>%</button>
-                    <br />
-                    <button type='button' className='btn btn-dark' name="btn1" onClick={handleClick} value='1'>1</button>
-                    <button type='button' className='btn btn-dark' name="btn2" onClick={handleClick} value='2'>2</button>
-                    <button type='button' className='btn btn-dark' name="btn3" onClick={handleClick} value='3'>3</button>
-                    <button type='button' className='btn btn-dark' name="ops" onClick={handleOps} value='+'>+</button>
-                    <button type='button' className='btn btn-dark' name="ops" onClick={handleOps} value='-'>-</button>
-
-                    <br />
-                    <button type='button' className='btn btn-dark' name="btn0" onClick={handleClick} value='0'>0</button>
-                    <button type='button' className='btn btn-dark' name="btn00" onClick={handleClick} value='00'>00</button>
-                    <button type='button' className='btn btn-dark' name="btn" onClick={handleClick} value='.'>.</button>
-                    <button type='button' className='btn btn-danger' name="btn" onClick={handleClr} value='='>AC</button>
-                    <button type='button' className='btn btn-success' name="btn" onClick={handleResult} value='='>=</button>
+                        <br />
+                        <button type='button' className='btn btn-dark' name="btn0" onClick={handleClick} value='0'>0</button>
+                        <button type='button' className='btn btn-dark' name="btn00" onClick={handleClick} value='00'>00</button>
+                        <button type='button' className='btn btn-dark' name="btn" onClick={handleClick} value='.'>.</button>
+                        <button type='button' className='btn btn-danger' name="btn" onClick={handleClr} value='='>AC</button>
+                        <button type='button' className='btn btn-success' name="btn" onClick={handleResult} value='='>=</button>
+                    </div>
                 </div>
-
+            </div>
+            <div className="d-flex justify-content-center">
                 {historyHideShow &&
-                    <div className='calculator mt-4'>
+                    <div className='history mt-4' style={{ border: '3px solid #61dafb', width: '24rem', backgroundColor: '#282c34' }}>
                         <h6>History list</h6>
 
                         <ul className='list-unstyled'>
@@ -149,7 +152,7 @@ export default function Calculator() {
                                 history.map((item, index) => {
                                     return (
                                         <li key={index}> {item} </li>
-                                        )
+                                    )
                                 })
                             }
                         </ul>
@@ -159,9 +162,9 @@ export default function Calculator() {
                         </button>
                     </div>
                 }
-            </center>
 
 
+            </div>
         </>
     )
 }

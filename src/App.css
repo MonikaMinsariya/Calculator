@@ -1,24 +1,43 @@
 .App {
   text-align: center;
   color: white;
+  font-size: x-large;
 }
 
- .btn {
-  width:18%;
-  margin:2px;
+.App-header {
+  background-color: #282c34;
+  /* min-height: 100vh; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.btn{
   background-color: #61dafb;
-} 
-
-.calculator{
-  
-  width: 30%;
-  border: 3px  solid #61dafb;
-  padding-left: 0;
+  margin: 2px;
+  color: white;
+  min-width: 70px;
+  font-size: 1.3rem;
 }
-/* ul {
-  border: 3px  solid #61dafb;
-  width: 30%;
-} */
+
+@media (max-width: 600px) {
+  .App{
+    font-size:large;
+  }
+  .btn {
+    min-width: 52px;
+  }
+  .card{
+    max-width: 19rem;
+  }
+  .history{
+    max-width: 19rem;
+  }
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -38,7 +57,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  /* font-size: calc(10px + 2vmin); */
   color: white;
 }
 
